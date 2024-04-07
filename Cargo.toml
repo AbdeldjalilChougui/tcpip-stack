@@ -1,0 +1,18 @@
+[package]
+name = "tcpip-stack"
+version = "0.1.0"
+edition = "2021"
+authors = ["Abdeldjalil Chougui"]
+license = "MIT"
+description = "Userspace TCP/IP stack: Ethernet, ARP, IPv4, ICMP, UDP and a minimal TCP, tested over an in-memory lossy wire"
+
+[features]
+# Linux TAP device backend. Needs CAP_NET_ADMIN to open /dev/net/tun.
+tun = ["dep:libc"]
+
+[dependencies]
+libc = { version = "0.2", optional = true }
+
+[[example]]
+name = "tap_echo"
+required-features = ["tun"]
